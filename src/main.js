@@ -1,10 +1,3 @@
-import App from './App.svelte';
+import Todos from './Todos.svelte';
 
-const app = new App({
-	target: document.body,
-	props: {
-		name: 'world'
-	}
-});
-
-export default app;
+export default new Todos({ target: document.body });
