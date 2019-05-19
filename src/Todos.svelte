@@ -8,6 +8,10 @@
     todos = [...todos, newTodo];
     newTodo = "";
   };
+
+  const deleteTodo = idxToBeDeleted => {
+    todos = todos.filter((_, idx) => idx !== idxToBeDeleted);
+  };
 </script>
 
 <form on:submit={addTodo}>
@@ -16,7 +20,8 @@
 </form>
 
 <ul>
-  {#each todos as todo}
+  {#each todos as todo, index}
     <li>{todo}</li>
+    <button on:click={() => deleteTodo(index)}>Delete</button>
   {/each}
 </ul>
