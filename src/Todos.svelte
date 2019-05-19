@@ -44,11 +44,13 @@
             <input
               class="toggle"
               type="checkbox"
-              on:click={() => (todos = toggleCompleted(index))} />
+              on:click={() => (todos = toggleCompleted(index))}
+              on:keydown={() => (todos = toggleCompleted(index))} />
             <label> {todo.value} </label>
             <button
               class="destroy"
-              on:click={() => (todos = deleteTodo(index))} />
+              on:click={() => (todos = deleteTodo(index))}
+              on:keydown={() => (todos = toggleCompleted(index))} />
           </div>
           <input class="edit" value={todo.value} />
         </li>

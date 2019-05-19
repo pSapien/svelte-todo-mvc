@@ -10,7 +10,7 @@ export default function TodosCreator(initialTodos) {
   function toggleCompleted(idxToBeCompleted) {
     todos = todos.map((todo, idx) => {
       if (idx === idxToBeCompleted) {
-        return { value: todo.value, isCompleted: true };
+        return { ...todo, isCompleted: !todo.isCompleted };
       } else {
         return todo;
       }
@@ -20,7 +20,7 @@ export default function TodosCreator(initialTodos) {
   }
 
   function toggleAllCompleted() {
-    todos = todos.map(todo => ({ value: todo.value, isCompleted: true }));
+    todos = todos.map(todo => ({ ...todo, isCompleted: true }));
 
     return todos;
   }
