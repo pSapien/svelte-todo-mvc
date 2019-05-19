@@ -1,7 +1,14 @@
 <script>
   import TodosCreator from "./TodosCreator.js";
 
-  let { addTodo, markAsCompleted, deleteTodo, todos } = TodosCreator([]);
+  let {
+    todos,
+
+    addTodo,
+    deleteTodo,
+    toggleCompleted,
+    toggleAllCompleted
+  } = TodosCreator([]);
 
   let newTodo = "";
 </script>
@@ -21,17 +28,27 @@
         placeholder="What needs to be done?"
         bind:value={newTodo} />
     </form>
+
   </header>
   <section class="main">
-    <input id="toggle-all" class="toggle-all" type="checkbox" />
+    <input
+      id="toggle-all"
+      class="toggle-all"
+      type="checkbox"
+      on:click={() => (todos = toggleAllCompleted())} />
     <label for="toggle-all" />
     <ul class="todo-list">
       {#each todos as todo, index}
-        <li>
+        <li class={todo.isCompleted ? 'completed' : ''}>
           <div class="view">
-            <input class="toggle" type="checkbox" />
-            <label>{todo.value}</label>
-            <button class="destroy" />
+            <input
+              class="toggle"
+              type="checkbox"
+              on:click={() => (todos = toggleCompleted(index))} />
+            <label> {todo.value} </label>
+            <button
+              class="destroy"
+              on:click={() => (todos = deleteTodo(index))} />
           </div>
           <input class="edit" value={todo.value} />
         </li>
