@@ -42,12 +42,12 @@
         <li class={todo.isCompleted ? 'completed' : ''}>
           <div class="view">
             <input
-              class="toggle"
               type="checkbox"
               on:click={() => (todos = toggleCompleted(index))}
               on:keydown={() => (todos = toggleCompleted(index))} />
             <label> {todo.value} </label>
             <button
+              tabindex="0"
               class="destroy"
               on:click={() => (todos = deleteTodo(index))}
               on:keydown={() => (todos = toggleCompleted(index))} />
