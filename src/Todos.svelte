@@ -37,6 +37,7 @@
           <div class="view">
             <input
               type="checkbox"
+              bind:checked={todo.isCompleted}
               on:click={() => (todos = toggleCompleted(index))} />
             <label> {todo.value} </label>
             <button

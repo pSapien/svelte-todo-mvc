@@ -302,6 +302,7 @@ body {
   text-decoration: none;
   border: 1px solid transparent;
   border-radius: 3px;
+  text-transform: capitalize;
 }
 
 .filters li button:hover {

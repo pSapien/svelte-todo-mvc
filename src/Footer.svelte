@@ -5,7 +5,7 @@
 
   $: todoLeftText = todosLength > 1 ? "items" : "item";
 
-  const filterKeys = ["all", "active", "completed"];
+  const filter = ["all", "active", "completed"];
 </script>
 
 <footer class="footer">
@@ -15,12 +15,12 @@
     <span>left</span>
   </span>
   <ul class="filters">
-    {#each filterKeys as filterKey}
+    {#each filter as filter}
       <li>
         <button
-          on:click={() => updateFilter(filterKey)}
-          class:selected={currentFilter === filterKey}>
-           {filterKey.toUpperCase()}
+          on:click={() => updateFilter(filter)}
+          class:selected={currentFilter === filter}>
+           {filter}
         </button>
       </li>
     {/each}
