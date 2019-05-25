@@ -1,6 +1,8 @@
 <script>
   import TodosCreator from "./TodosCreator.js";
+
   import Header from "./Header.svelte";
+  import Todo from "./Todo.svelte";
   import Footer from "./Footer.svelte";
 
   let {
@@ -8,18 +10,14 @@
 
     addTodo,
     deleteTodo,
+    filterTodo,
     toggleCompleted,
     toggleAllCompleted
   } = TodosCreator([]);
 
   let currentFilter = "all";
 
-  $: filteredTodos =
-    currentFilter === "all"
-      ? todos
-      : currentFilter === "completed"
-      ? todos.filter(todo => todo.completed)
-      : todos.filter(todo => !todo.completed);
+  $: filteredTodos = filterTodo(currentFilter, todos);
 </script>
 
 <section class="todoapp">
@@ -33,19 +31,10 @@
     <label for="toggle-all" />
     <ul class="todo-list">
       {#each filteredTodos as todo, index}
-        <li class:completed={todo.isCompleted}>
-          <div class="view">
-            <input
-              type="checkbox"
-              bind:checked={todo.isCompleted}
-              on:click={() => (todos = toggleCompleted(index))} />
-            <label> {todo.value} </label>
-            <button
-              class="destroy"
-              on:click={() => (todos = deleteTodo(index))} />
-          </div>
-          <input class="edit" value={todo.value} />
-        </li>
+        <Todo
+          {todo}
+          onCheckboxChange={() => (todos = toggleCompleted(index))}
+          onDelete={() => (todos = deleteTodo(index))} />
       {/each}
     </ul>
   </section>
