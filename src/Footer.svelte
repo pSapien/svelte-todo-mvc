@@ -1,8 +1,11 @@
 <script>
   export let todosLength;
   export let updateFilter;
+  export let currentFilter;
 
   $: todoLeftText = todosLength > 1 ? "items" : "item";
+
+  const filterKeys = ["all", "active", "completed"];
 </script>
 
 <footer class="footer">
@@ -12,18 +15,14 @@
     <span>left</span>
   </span>
   <ul class="filters">
-    <li>
-      <button on:click={() => updateFilter('all')} class="selected">All</button>
-    </li>
-    <span />
-    <li>
-      <button on:click={() => updateFilter('active')} class="">Active</button>
-    </li>
-    <span />
-    <li>
-      <button on:click={() => updateFilter('completed')} class="">
-        Completed
-      </button>
-    </li>
+    {#each filterKeys as filterKey}
+      <li>
+        <button
+          on:click={() => updateFilter(filterKey)}
+          class:selected={currentFilter === filterKey}>
+           {filterKey.toUpperCase()}
+        </button>
+      </li>
+    {/each}
   </ul>
 </footer>
