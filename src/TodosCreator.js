@@ -31,10 +31,25 @@ export default function TodosCreator(initialTodos) {
     return todos;
   }
 
+  function filterTodo(filterBy) {
+    if (filterBy === 'all') {
+      return todos;
+    }
+
+    if (filterBy === 'completed') {
+      return todos.filter(todo => todo.isCompleted);
+    }
+
+    if (filterBy === 'active') {
+      return todos.filter(todo => !todo.isCompleted);
+    }
+  }
+
   return {
     todos,
 
     addTodo,
+    filterTodo,
     deleteTodo,
     toggleCompleted,
     toggleAllCompleted,
