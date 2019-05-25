@@ -1,11 +1,8 @@
 <script>
-  export let todosLength;
-  export let updateFilter;
-  export let currentFilter;
+  export let todosLength, updateFilter, currentFilter;
+  const filter = ["all", "active", "completed"];
 
   $: todoLeftText = todosLength > 1 ? "items" : "item";
-
-  const filter = ["all", "active", "completed"];
 </script>
 
 <footer class="footer">
